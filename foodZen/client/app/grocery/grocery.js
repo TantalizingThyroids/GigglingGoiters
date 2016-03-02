@@ -115,5 +115,11 @@ angular.module('foodZen.groceries', [])
     });
   };
 
+ $scope.emailList = function(){
+   Groceries.emailList().then(function(){
+     console.log("In GroceryList.js");
+   })
+ }
+
   initializeGroceries();
 });

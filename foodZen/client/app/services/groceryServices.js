@@ -40,10 +40,15 @@ angular.module('foodZen.grocery-services', [])
     });
   };
 
+  var emailList = function(){
+    console.log("In grocery-services");
+  }
+
   return {
     getGroceryList: getGroceryList,
     postGroceries: postGroceries,
     deleteGroceries: deleteGroceries,
-    groceries: groceries
+    groceries: groceries,
+    emailList: emailList
   };
 }]);
