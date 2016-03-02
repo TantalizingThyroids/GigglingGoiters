@@ -44,6 +44,12 @@ angular.module('foodZen', ['foodZen.ingredients',
     controller: 'MapController',
     authenticate: true
   })
+  .when('/email', {
+    templateUrl: 'app/grocery/grocery.html',
+    controller: 'GroceryController',
+    authenticate: true
+
+  })
   .otherwise({
     redirectTo: '/ingredients'
   });

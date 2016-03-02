@@ -20,7 +20,7 @@ angular.module('foodZen.groceries', [])
   };
 
   //this function preforms the logic for populating the grocery list
-  //it adds ingredients from selected recipes, but does not include ingredients 
+  //it adds ingredients from selected recipes, but does not include ingredients
   //the user has instock and that are already on the grocery list
   $scope.groceriesFromRecipes = function() {
     if($scope.data.selected.length > 0){
