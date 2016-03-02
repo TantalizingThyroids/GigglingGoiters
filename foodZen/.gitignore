@@ -1,8 +1,6 @@
 
 # files
 **/.DS_Store
-npm-debug.log
-# Add console logs for testing
 .AppleDouble
 .LSOverride
 azure.err
