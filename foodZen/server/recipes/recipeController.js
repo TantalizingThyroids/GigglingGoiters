@@ -123,7 +123,9 @@ module.exports = {
       if (error) {
         console.log("Error with getRecipeDetails request:", error);
       } else {
-      res.end(body);
+        body.nutrition = "Lots O fat, Lots o Flavor";
+        console.log('Recipe Details!! ', body);
+        res.end(body);
 
       }
     });

@@ -93,6 +93,7 @@ angular.module('foodZen.recipes', [])
       return step !== '';
     }));
     recipe.data.instructions = formattedInstructions;
+    console.log('Ingredients!! ', recipe.data.extendedIngredients);
     $scope.singleRecipe.recipe = recipe;
   };
 
