@@ -1,13 +1,14 @@
-angular.module('foodZen', ['foodZen.ingredients', 
-  'foodZen.auth', 
-  'foodZen.recipes', 
-  'foodZen.services', 
-  'foodZen.auth-services', 
-  'foodZen.groceries', 
+angular.module('foodZen', ['foodZen.ingredients',
+  'foodZen.auth',
+  'foodZen.recipes',
+  'foodZen.services',
+  'foodZen.auth-services',
+  'foodZen.groceries',
   'foodZen.map',
-  'foodZen.grocery-services', 
-  'ngRoute', 
+  'foodZen.grocery-services',
+  'ngRoute',
   'checklist-model'])
+
 .config(function($routeProvider, $httpProvider){
   $routeProvider
   .when('/ingredients', {
