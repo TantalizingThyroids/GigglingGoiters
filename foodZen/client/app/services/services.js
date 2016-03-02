@@ -1,6 +1,5 @@
 angular.module('foodZen.services', [])
 
-
 .factory('Recipes', [ '$http', function ($http){
 
   var recipes = [];
