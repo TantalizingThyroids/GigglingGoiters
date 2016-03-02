@@ -41,7 +41,14 @@ angular.module('foodZen.grocery-services', [])
   };
 
   var emailList = function(){
-    console.log("In grocery-services");
+    return $http({
+      method: 'POST',
+      url: '/api/groceries',
+    }).then(function(res){
+      console.log("email post request success");
+    }, function(err){
+      console.error("error with posting email request")
+    });
   }
 
   return {
