@@ -1,4 +1,13 @@
-angular.module('foodZen', ['foodZen.ingredients', 'foodZen.auth', 'foodZen.recipes', 'foodZen.services', 'foodZen.auth-services', 'foodZen.groceries', 'foodZen.grocery-services', 'ngRoute', 'checklist-model'])
+angular.module('foodZen', ['foodZen.ingredients', 
+  'foodZen.auth', 
+  'foodZen.recipes', 
+  'foodZen.services', 
+  'foodZen.auth-services', 
+  'foodZen.groceries', 
+  'foodZen.map',
+  'foodZen.grocery-services', 
+  'ngRoute', 
+  'checklist-model'])
 .config(function($routeProvider, $httpProvider){
   $routeProvider
   .when('/ingredients', {
@@ -28,6 +37,11 @@ angular.module('foodZen', ['foodZen.ingredients', 'foodZen.auth', 'foodZen.recip
   .when('/signup', {
     templateUrl: 'app/auth/signup.html',
     controller: 'AuthController'
+  })
+  .when('/map', {
+    templateUrl: 'app/map/map.html',
+    controller: 'MapController',
+    authenticate: true
   })
   .otherwise({
     redirectTo: '/ingredients'
