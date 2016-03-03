@@ -103,7 +103,7 @@ module.exports = {
     User_Recipe.findOne({email: email}).exec(function( err, found) {
       if( found ) {
         callback ( found );
-        
+
       } else {
         var newIngredient =  new Ingredient({
           email: email,

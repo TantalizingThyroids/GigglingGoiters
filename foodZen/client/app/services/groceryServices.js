@@ -40,10 +40,22 @@ angular.module('foodZen.grocery-services', [])
     });
   };
 
+  var emailList = function(){
+    return $http({
+      method: 'POST',
+      url: '/api/email'
+    }).then(function(res){
+      console.log("email post request success");
+    }, function(err){
+      console.error("error with posting email request")
+    });
+  }
+
   return {
     getGroceryList: getGroceryList,
     postGroceries: postGroceries,
     deleteGroceries: deleteGroceries,
-    groceries: groceries
+    groceries: groceries,
+    emailList: emailList
   };
 }]);
