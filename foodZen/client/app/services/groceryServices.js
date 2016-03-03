@@ -11,7 +11,7 @@ angular.module('foodZen.grocery-services', [])
       console.log('got dem groceries');
       groceries = res.data;
       return res.data;
-    }, function (error) {
+    }).catch(function (error) {
       console.error('error with getting groceries');
     });
   };
@@ -26,7 +26,7 @@ angular.module('foodZen.grocery-services', [])
       data: {groceries: groceryArray}
     }).then(function(res){
       console.log('success with the grocery post !');
-    }, function(error){
+    }).catch(function(error){
       console.error('error with posting groceryList');
     });
   };
@@ -35,18 +35,20 @@ angular.module('foodZen.grocery-services', [])
     return $http.delete('/api/groceries', {params: {grocery: grocery}})
     .then(function(res){
       console.log('success with the grocery delete !');
-    }, function(error){
+    }).catch(function(error){
       console.error('error with grocery delete');
     });
   };
 
-  var emailList = function(){
+  var emailList = function(toEmail, list){
     return $http({
       method: 'POST',
-      url: '/api/email'
+      url: '/api/email',
+      data: {to: toEmail, list: list}
     }).then(function(res){
       console.log("email post request success");
-    }, function(err){
+      window.alert("Message sent ^.^");
+    }).catch(function(err){
       console.error("error with posting email request")
     });
   }
