@@ -97,7 +97,6 @@ angular.module('foodZen.recipes', ['ngSanitize'])
       return step !== '';
     }));
     recipe.data.instructions = formattedInstructions;
-    console.log('Ingredients!! ', recipe.data.extendedIngredients);
     $scope.singleRecipe.recipe = recipe;
   };
 
@@ -111,6 +110,8 @@ angular.module('foodZen.recipes', ['ngSanitize'])
       $scope.singleRecipe.view = true;
       adjustRecipe(recipe);
       var ingList = recipe.data.extendedIngredients;
+      var nutriList = [];
+      // Pull nutrition information from spoontacular api
       ingList.forEach(function(item, i){
         var ingredient = item.originalString;
         console.log('Ingredient Test: ', ingredient);
