@@ -98,6 +98,10 @@ h2 {
   text-align: center;
 }
 
+.query-submission {
+  text-align: center;
+}
+
 .ingredient-submission ul {
   list-style: none;
 }
@@ -364,3 +368,9 @@ input.error {
   height: 10px;
 }
 
+.maps {
+    padding-top: 50px;
+    padding-right: 30px;
+    padding-bottom: 50px;
+    padding-left: 80px;
+}
