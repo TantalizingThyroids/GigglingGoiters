@@ -87,7 +87,7 @@ module.exports = {
     });
 
 
-    // uncomment if you want errors up the bum
+    // pending refactor
     // findRecipe({id: recipe.id})
     // .then(function (found) {
     //   if (found) {

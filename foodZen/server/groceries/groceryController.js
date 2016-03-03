@@ -52,9 +52,9 @@ module.exports = {
   emailList: function(req, res){
     // Email Friend of User grocerylist
     var mailgun = new Mailgun({apiKey: emailAPIkey, domain: emailDomain});
-    var html = 'Hello! Welcome!' +
+    var html = 'Hello! Welcome to FoodZen!' +
       '<div>' +
-      '<h2>Guess who got email working?! Fabulousness!!</h2>' +
+      '<h2>Check out my FoodZen ingredients list!</h2>' +
       '<ul>' +
       req.body.list.map(function(e) {
         return '<li>' + e + '</li>';
@@ -75,7 +75,6 @@ module.exports = {
         console.log("Error sending message: ", err);
         res.status(404).end();
       } else {
-        console.log("BODY FOR WHY?!!", body);
         res.status(204).end();
       }
     });
