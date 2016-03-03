@@ -126,7 +126,7 @@ angular.module('foodZen.recipes', ['ngSanitize'])
           .then(function(nutri){
             // console.log('Test Nutri: ', nutri.data);
             console.log('HTML JSON Conversion: ', angular.toJson(nutri.data));
-            $scope.data.nutri = angular.toJson(nutri.data);
+            $scope.data.nutri.push(nutri.data);
           });
       });
       console.log('Ingredients!! ', ingList);
