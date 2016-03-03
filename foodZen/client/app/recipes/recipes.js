@@ -1,4 +1,4 @@
-angular.module('foodZen.recipes', [])
+angular.module('foodZen.recipes', ['ngSanitize'])
 .controller('RecipeController', function($scope, $http, Recipes, Ingredients, $location, $anchorScroll, $timeout){
   $scope.data = {};
   $scope.singleRecipe = {};
@@ -93,7 +93,6 @@ angular.module('foodZen.recipes', [])
       return step !== '';
     }));
     recipe.data.instructions = formattedInstructions;
-    console.log('Ingredients!! ', recipe.data.extendedIngredients);
     $scope.singleRecipe.recipe = recipe;
   };
 
@@ -106,6 +105,31 @@ angular.module('foodZen.recipes', [])
     }).then(function( recipe ){
       $scope.singleRecipe.view = true;
       adjustRecipe(recipe);
+      var ingList = recipe.data.extendedIngredients;
+      var nutriList = [];
+      ingList.forEach(function(item, i){
+        var ingredient = item.originalString;
+        console.log('Ingredient Test: ', ingredient);
+        var joinTest = ingredient.split(' ');
+        joinTest = joinTest.join('+');
+        console.log('join test: ', joinTest);
+        var settings = {
+          url: "https://spoonacular-recipe-food-nutrition-v1.p.mashape.com/recipes/visualizeNutrition",
+          method: "POST",
+          headers: {
+            'X-Mashape-Key': "kwMRnRx4Pdmsh3iPYU5EviI2URg2p1N6NxtjsnwJlPvXFoXn2V",
+            'Content-Type': "application/x-www-form-urlencoded"
+          },
+          data: "defaultCss=checked&ingredientList="+joinTest+"&servings=1"
+        };
+        $http(settings)
+          .then(function(nutri){
+            // console.log('Test Nutri: ', nutri.data);
+            console.log('HTML JSON Conversion: ', angular.toJson(nutri.data));
+            $scope.data.nutri = angular.toJson(nutri.data);
+          });
+      });
+      console.log('Ingredients!! ', ingList);
       $scope.scrollTo('singleRecipe');
     });
   };
