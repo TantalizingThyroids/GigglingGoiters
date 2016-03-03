@@ -30,7 +30,8 @@ module.exports = function (app, express) {
   app.get('/api/groceries/', helpers.decode, groceryController.sendGroceries);
 
   //Email grocery list
-  // app.post('/api/email/', helpers.decode, groceryController.emailList);
+  app.post('/api/email/', helpers.decode, groceryController.emailList);
+
   // If a request is sent somewhere other than the routes above,
   // send it through our custom error handler
   app.use(helpers.errorLogger);

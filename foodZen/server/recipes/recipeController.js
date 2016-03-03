@@ -2,7 +2,7 @@ var Ingredient = require('../ingredients/ingredientController.js');
 var User_Recipe = require('../user_recipe/user_recipeModel.js');
 var Recipe = require('./recipeModel.js');
 var env = require('../env/env.js');
-var api_key = env.api_key;
+var foodAPIkey = env.foodAPIkey;
 var request = require('request');
 var findByIngredients = 'https://spoonacular-recipe-food-nutrition-v1.p.mashape.com/recipes/findByIngredients';
 var findRecipeDetails = 'https://spoonacular-recipe-food-nutrition-v1.p.mashape.com/recipes/';
@@ -19,7 +19,7 @@ module.exports = {
     var options = {
       url: findByIngredients,
       headers: {
-        'X-Mashape-Key': api_key
+        'X-Mashape-Key': foodAPIkey
       },
       qs: {ingredients: Ingredient.getAllIngredients()}
     };
@@ -39,7 +39,7 @@ module.exports = {
       var options = {
         url: findByIngredients,
         headers: {
-          'X-Mashape-Key': api_key
+          'X-Mashape-Key': foodAPIkey
         },
         qs: {ingredients: ingredients},
       };
@@ -87,7 +87,7 @@ module.exports = {
     });
 
 
-    // uncomment if you want errors up the bum
+    // pending refactor
     // findRecipe({id: recipe.id})
     // .then(function (found) {
     //   if (found) {
@@ -116,7 +116,7 @@ module.exports = {
     var options = {
       url: findRecipeDetails + id + '/information',
       headers: {
-        'X-Mashape-Key': api_key
+        'X-Mashape-Key': foodAPIkey
       }
     };
     request.get(options, function (error, response, body) {
