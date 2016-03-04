@@ -7,7 +7,6 @@ mongoose.connect('mongodb://localhost/foodZen');
 
 require('./config/middleware.js')(app, express);
 require('./config/routes.js')(app, express);
-
 // start listening to requests on process.env.PORT or 3000
 var port = process.env.PORT || 3000;
 app.listen(port);

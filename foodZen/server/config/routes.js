@@ -26,7 +26,7 @@ module.exports = function (app, express) {
 
   //Interact with Groceries
   app.post('/api/groceries/', helpers.decode, groceryController.addGroceries);
-  app.delete('/api/groceries/', helpers.decode, groceryController.removeGroceries);
+  app.delete('/api/groceries/', helpers.decode, groceryController.deleteChoice);
   app.get('/api/groceries/', helpers.decode, groceryController.sendGroceries);
 
   //Email grocery list

@@ -1,6 +1,7 @@
 body {
   padding-top: 50px;
-  font-family: 'Playfair Display', serif;
+  /*font-family: 'Playfair Display', serif;*/
+  font-family: Tahoma;
 }
 
 .instock {
@@ -46,7 +47,7 @@ body {
 
 .navigation a:hover {
   color: grey;
-} 
+}
 
 /*
 **  header
@@ -66,8 +67,8 @@ h1 {
   z-index: 2;
   position: absolute;
   color: white;
-  top: 20%; 
-  width: 100%; 
+  top: 20%;
+  width: 100%;
   font-size: 75px;
   text-align: center;
   font-weight: bold;
@@ -201,7 +202,7 @@ button.add-basket {
 }
 
 /*
-**  Recipe search results 
+**  Recipe search results
 */
 table.table {
   table-layout: fixed;
@@ -244,11 +245,11 @@ button.close.saveRecipe {
 }
 
 button.close.center {
-float: none; 
+float: none;
 }
 
 button.close {
-float: none; 
+float: none;
 }
 
 h3.error {
@@ -294,7 +295,7 @@ ul.glist-recipe {
 
 .glist-recipe li:hover {
   background-color: #F5F8FA;
-  
+
 }
 
 ul.glist-ingredients {
@@ -310,6 +311,9 @@ div.glist {
   padding: 10px;
 }
 
+.glist-clearAll {
+  padding: 10px;
+}
 
 li.even {
   color: red;
