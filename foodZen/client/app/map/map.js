@@ -2,8 +2,7 @@ angular.module("foodZen.map", [])
 
 .controller("MapController", function($scope, $sce) {
   $scope.query;
-  $scope.url;
-
+  $scope.url = $sce.trustAsResourceUrl('https://www.google.com/maps/embed/v1/search?q=store&key=AIzaSyCYdI-lgb1JRIBP0dPdqsfIBe-slSQU4AI');
 
   $scope.hitEnter = function($event, input) {
     if($event.which === 13) {
