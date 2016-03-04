@@ -6,7 +6,12 @@ module.exports = {
   addIngredient: function (req, res, next) {
    var ingredient = req.body.ingredient;
     helpers.findUser(req, res, next, function( found ){
-      found.ingredients.push(ingredient);
+      console.log("user ingredients: ", found.ingredients);
+      if (found.ingredients.indexOf(ingredient) === -1) {
+        found.ingredients.push(ingredient);
+      } else {
+        console.log("That ingredient already exists!");
+      }
     });
   },
 
