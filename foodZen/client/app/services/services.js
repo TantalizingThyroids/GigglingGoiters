@@ -1,5 +1,4 @@
 angular.module('foodZen.services', [])
-
 .factory('Recipes', [ '$http', function ($http){
 
   var recipes = [];
@@ -107,7 +106,7 @@ angular.module('foodZen.services', [])
     });
   };
 
-    var deleteIngredient = function(ingredient, callback) {
+  var deleteIngredient = function(ingredient, callback) {
     return $http.delete('/api/ingredients', {params: {ingredient: ingredient}})
     .then(function (res) {
       console.log('success delete ingredient');
@@ -117,7 +116,7 @@ angular.module('foodZen.services', [])
     });
   };
 
-    var deleteUserRecipe = function(recipe) {
+  var deleteUserRecipe = function(recipe) {
     return $http.delete('/api/users/recipes', {params: {recipe: recipe}})
     .then(function (res) {
       console.log('success deleting recipe');
@@ -126,12 +125,45 @@ angular.module('foodZen.services', [])
     });
   };
 
+  /* Function to Extract Nutrition information from inbound XML
+     and put into an object */
+  var nutritionExtractor = function(xmlBlob) {
+    function RemoveHTMLTags(input) {
+      var regX = /(<([^>]+)>)/ig;
+      var html = input;
+      var stripped = html.replace(regX, " ");
+      return stripped;
+    }
+    // var testy = ''; 
+    // testy = xmlBlob.data;
+    // count 11 div and chop!
+    // var fing = testy.split('div');
+    // var fiddl = fing.slice(0,11);
+    // fiddl = fiddl.join('div');
+    // fiddl = fiddl.slice(0,fiddl.length-1);
+    // More strip tests
+    var tiddl = RemoveHTMLTags(xmlBlob.data);
+    tiddl = tiddl.split(' ');
+
+    var finalStr = [];
+    tiddl.forEach(function(item, index){
+      if(item !== ""){
+        finalStr.push(item);
+      }
+    });
+    finalStr.shift();
+    var trueFinal = finalStr.slice(0,112);
+    // console.log('Joins Ville Baby:  ', trueFinal);
+    return trueFinal;
+  };
+
   return {
     postIngredient: postIngredient,
     deleteIngredient: deleteIngredient,
     ingredients: ingredients,
     getIngredients: getIngredients,
-    deleteUserRecipe: deleteUserRecipe
+    deleteUserRecipe: deleteUserRecipe,
+    nutritionExtractor: nutritionExtractor
   };
 }])
 
@@ -176,8 +208,10 @@ angular.module('foodZen.services', [])
       ]
     }
   };
+  
 
   return {
-    baskets: baskets
+    baskets: baskets,
   };
 }]);
+

@@ -36,6 +36,7 @@ module.exports = {
     var email = req.user.email;
     Ingredient.getAllIngredients( email, function( cart ){
       var ingredients = cart.ingredients.join();
+      console.log('Ingredient List: ', ingredients);
       var options = {
         url: findByIngredients,
         headers: {
@@ -123,7 +124,9 @@ module.exports = {
       if (error) {
         console.log("Error with getRecipeDetails request:", error);
       } else {
-      res.end(body);
+        body.nutrition = "Lots O fat, Lots o Flavor";
+        console.log('Recipe Details!! ', body);
+        res.end(body);
 
       }
     });
