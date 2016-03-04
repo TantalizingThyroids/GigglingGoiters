@@ -42,7 +42,6 @@ angular.module('foodZen.grocery-services', [])
   };
 
   var removeAllGroceries = function() {
-    console.log("In servcies")
     return $http.delete('/api/groceries')
     .then(function(res){
       console.log('success with list removal !');
