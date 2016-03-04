@@ -110,12 +110,12 @@ angular.module('foodZen.recipes', ['ngSanitize'])
       $scope.singleRecipe.view = true;
       adjustRecipe(recipe);
       var ingList = recipe.data.extendedIngredients;
-      // ingList.forEach(function(item, i){
-      //   var ingredient = item.originalString;
-      //   console.log('Ingredient Test: ', ingredient);
-      //   var joinTest = ingredient.split(' ');
-      //   joinTest = joinTest.join('+');
-      //   console.log('join test: ', joinTest);
+      ingList.forEach(function(item, i){
+        var ingredient = item.originalString;
+        console.log('Ingredient Test: ', ingredient);
+        var joinTest = ingredient.split(' ');
+        joinTest = joinTest.join('+');
+        console.log('join test: ', joinTest);
         var settings = {
           url: "https://spoonacular-recipe-food-nutrition-v1.p.mashape.com/recipes/visualizeNutrition",
           method: "POST",
@@ -123,15 +123,16 @@ angular.module('foodZen.recipes', ['ngSanitize'])
             'X-Mashape-Key': "kwMRnRx4Pdmsh3iPYU5EviI2URg2p1N6NxtjsnwJlPvXFoXn2V",
             'Content-Type': "application/x-www-form-urlencoded"
           },
-          data: "defaultCss=checked&ingredientList=600+grams+beef&servings=1"
+          data: "defaultCss=checked&ingredientList="+joinTest+"&servings=1"
         };
         $http(settings)
           .then(function(nutri){
             // Extract inbound nutrition info
             var ingArr = Ingredients.nutritionExtractor(nutri);
+            console.log('Ingredient', ingredient);
             console.log('Ingredient Array: ', ingArr);
           });
-      // });
+      });
       console.log('Ingredients!! ', ingList);
       // console.log('Nutri Info: ', nutriList);
       $scope.scrollTo('singleRecipe');

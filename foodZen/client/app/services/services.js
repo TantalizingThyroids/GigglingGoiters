@@ -128,24 +128,20 @@ angular.module('foodZen.services', [])
   /* Function to Extract Nutrition information from inbound XML
      and put into an object */
   var nutritionExtractor = function(xmlBlob) {
-    // console.log('Test Nutri: ', xmlBlob);
-    // console.log('HTML JSON Conversion: ', angular.toJson(xmlBlob.data));
-    var testy = ''; 
-    testy = xmlBlob.data;
-    // console.log('chop this thing: ', testy);
-    // count 11 div and chop!
-    var fing = testy.split('div');
-    // console.log('Splits-Ville Baby....', fing);
-    var fiddl = fing.slice(0,11);
-    fiddl = fiddl.join('div');
-    fiddl = fiddl.slice(0,fiddl.length-1);
-    // More strip tests
     function RemoveHTMLTags(input) {
       var regX = /(<([^>]+)>)/ig;
       var html = input;
       var stripped = html.replace(regX, " ");
       return stripped;
     }
+    // var testy = ''; 
+    // testy = xmlBlob.data;
+    // count 11 div and chop!
+    // var fing = testy.split('div');
+    // var fiddl = fing.slice(0,11);
+    // fiddl = fiddl.join('div');
+    // fiddl = fiddl.slice(0,fiddl.length-1);
+    // More strip tests
     var tiddl = RemoveHTMLTags(xmlBlob.data);
     tiddl = tiddl.split(' ');
 
