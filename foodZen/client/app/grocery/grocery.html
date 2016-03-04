@@ -14,17 +14,19 @@
     </li>
   </ul>
 
-
 </div>
 
 <div class="glist">
   <div class="grocerylist-submission">
     <input ng-model="email" placeholder="Enter email address">
-    <button type="submit" ng-click="emailList()">Share your list!</button>
+    <button type="submit" ng-click="emailList()">Share Your List!</button>
     <input ng-model="newGrocery" placeholder="Add items">
-    <button type="submit" ng-click="addGrocery()">add</button>
+    <button type="submit" ng-click="addGrocery()">Add</button>
+  </div>
+  <div class="glist-removeAll">
+    <button type="submit" ng-click="removeAllGroceries()">Remove All Items</button>
   </div>
   <ul>
-    <li ng-repeat="grocery in data.groceries">{{ grocery }}<button type="button" class="close" ng-click="deleteGrocery(grocery)">X</button></li>
+    <li ng-repeat="grocery in data.groceries">{{grocery}}<button type="button" class="close" ng-click="deleteGrocery(grocery)"> x </button></li>
   </ul>
 </div>

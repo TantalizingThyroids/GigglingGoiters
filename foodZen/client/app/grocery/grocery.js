@@ -61,6 +61,7 @@ angular.module('foodZen.groceries', [])
       Groceries.postGroceries(arrayify)
       .then(function () {
         $scope.updateGrocery();
+        console.log("ARRAYIAA", arrayify)
       });
     }
     $scope.newGrocery = '';
@@ -115,10 +116,16 @@ angular.module('foodZen.groceries', [])
     });
   };
 
+  $scope.removeAllGroceries = function() {
+    Groceries.removeAllGroceries()
+    .then(function () {
+      $scope.data.groceries = [];
+    });
+  };
+
   $scope.emailList = function(){
     Groceries.emailList($scope.email, $scope.data.groceries).then(function(){
       console.log("In GroceryList.js");
-
     })
   }
 

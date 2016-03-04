@@ -49,6 +49,39 @@ module.exports = {
     });
   },
 
+  removeAllGroceries: function ( req, res, next ) {
+    console.log("Hey there! :D")
+    var grocery = req.query.grocery;
+    var email = req.user.email;
+
+    Grocery.findOne({email: email}).exec(function(err, found) {
+      if(err){
+        console.log(err);
+        res.status(500).end();
+      } else {
+        console.log("success")
+        found.groceries = [];
+        found.save(function(err, success){
+          if(err){
+            console.log(err)
+            res.status(500).end();
+          } else {
+            console.log("success", success);
+            res.status(204).end();
+          }
+        });
+      }
+    });
+  },
+
+  deleteChoice: function(req, res){
+    if(req.query.grocery){
+      module.exports.removeGroceries(req, res);
+    } else {
+      module.exports.removeAllGroceries(req, res);
+    }
+  },
+
   emailList: function(req, res){
     // Email Friend of User grocerylist
     var mailgun = new Mailgun({apiKey: emailAPIkey, domain: emailDomain});

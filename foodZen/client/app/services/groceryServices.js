@@ -35,8 +35,20 @@ angular.module('foodZen.grocery-services', [])
     return $http.delete('/api/groceries', {params: {grocery: grocery}})
     .then(function(res){
       console.log('success with the grocery delete !');
-    }).catch(function(error){
+    }, function(error){
       console.error('error with grocery delete');
+      throw(error);
+    });
+  };
+
+  var removeAllGroceries = function() {
+    console.log("In servcies")
+    return $http.delete('/api/groceries')
+    .then(function(res){
+      console.log('success with list removal !');
+    }, function(error){
+      console.error('error with list removal! ');
+      throw(error);
     });
   };
 
@@ -47,9 +59,10 @@ angular.module('foodZen.grocery-services', [])
       data: {to: toEmail, list: list}
     }).then(function(res){
       console.log("email post request success");
-      window.alert("Message sent ^.^");
-    }).catch(function(err){
+      window.alert("Email sent!");
+    }, function(err){
       console.error("error with posting email request")
+      throw(err);
     });
   }
 
@@ -58,6 +71,7 @@ angular.module('foodZen.grocery-services', [])
     postGroceries: postGroceries,
     deleteGroceries: deleteGroceries,
     groceries: groceries,
-    emailList: emailList
+    emailList: emailList,
+    removeAllGroceries: removeAllGroceries
   };
 }]);
