@@ -126,8 +126,8 @@ angular.module('foodZen.groceries', [])
   $scope.emailList = function(){
     Groceries.emailList($scope.email, $scope.data.groceries).then(function(){
       console.log("In GroceryList.js");
-    })
-  }
+    });
+  };
 
   $scope.email = "";
 

@@ -3,7 +3,7 @@ var helpers = require('../config/helpers.js');
 var https = require('https');
 var request = require('request');
 var Mailgun = require('mailgun-js');
-var env = require('../env/env.js')
+var env = require('../env/env.js');
 var emailAPIkey = env.emailAPIkey;
 var emailDomain = env.emailDomain;
 
