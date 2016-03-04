@@ -7,6 +7,7 @@ angular.module('foodZen', ['foodZen.ingredients',
   'foodZen.map',
   'foodZen.grocery-services',
   'ngRoute',
+  'ngSanitize',
   'checklist-model'])
 
 .config(function($routeProvider, $httpProvider){
