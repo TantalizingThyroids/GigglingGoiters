@@ -36,6 +36,7 @@ module.exports = {
     var email = req.user.email;
     Ingredient.getAllIngredients( email, function( cart ){
       var ingredients = cart.ingredients.join();
+      console.log('Ingredient List: ', ingredients);
       var options = {
         url: findByIngredients,
         headers: {
