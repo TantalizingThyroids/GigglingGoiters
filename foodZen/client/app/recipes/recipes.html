@@ -20,7 +20,14 @@
         Ingredients
         </h3>
         <ul>
-          <li class="recipe-table" ng-repeat="item in singleRecipe.recipe.data.extendedIngredients"> {{ item.originalString }}
+          <li class="recipe-table" font-weight="bold" ng-repeat="item in singleRecipe.recipe.data.extendedIngredients"> {{ item.originalString }}
+            <div>
+              <p>Calories: {{ item.nutri.Calories }}</p>
+              <p>Protein: {{ item.nutri.Protein }}</p>
+              <p>Total fat: {{ item.nutri.TotalFat }}</p>
+              <p>Carbs: {{ item.nutri.Carbs }}</p>
+              <p>Sugar: {{ item.nutri.Sugar }}</p>
+            </div>
           </li >
         </ul>
       </td>
