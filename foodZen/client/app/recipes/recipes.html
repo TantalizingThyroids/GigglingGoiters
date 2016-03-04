@@ -21,7 +21,7 @@
         </h3>
         <ul>
           <li class="recipe-table" ng-repeat="item in singleRecipe.recipe.data.extendedIngredients"> {{ item.originalString }}
-            <span ng-bind-html="data.nutri"></span>
+            <!-- <div ng-repeat="nutri in data.nutri" ng-bind-html="nutri"></div> -->
           </li >
         </ul>
       </td>
