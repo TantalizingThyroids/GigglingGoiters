@@ -3,7 +3,7 @@
 <h2>Make a grocery list based on your saved recipes!</h2>
 
 <div class="glist-recipes">
-  <button type="submit" ng-click="groceriesFromRecipes()">update my grocery list with items from checked recipes</button>
+  <button class="btn-sm btn-primary" type="submit" ng-click="groceriesFromRecipes()">update my grocery list with items from checked recipes</button>
   <ul class="glist-recipe">
     <li ng-repeat="recipe in data.recipes" ng-src="">
     <div><img class="recipe" ng-src="{{recipe.image}}"></div>
@@ -19,14 +19,15 @@
 <div class="glist">
   <div class="grocerylist-submission">
     <input ng-model="email" placeholder="Enter email address">
-    <button type="submit" ng-click="emailList()">Share Your List!</button>
+    <button class="btn-sm btn-primary" type="submit" ng-click="emailList()">Share Your List!</button>
     <input ng-model="newGrocery" placeholder="Add items">
-    <button type="submit" ng-click="addGrocery()">Add</button>
+    <button class="btn-sm btn-primary" type="submit" ng-click="addGrocery()">Add</button>
   </div>
   <div class="glist-removeAll">
-    <button type="submit" ng-click="removeAllGroceries()">Remove All Items</button>
+    <button class="btn-sm btn-primary" type="submit" ng-click="removeAllGroceries()">Remove All Items</button><br></br>
   </div>
   <ul>
-    <li ng-repeat="grocery in data.groceries">{{grocery}}<button type="button" class="close" ng-click="deleteGrocery(grocery)"> x </button></li>
+<li ng-repeat="grocery in data.groceries" ><a class="groceryItems" ng-click="deleteGrocery(grocery)"> {{grocery}}</a> </li>
   </ul>
 </div>
+
