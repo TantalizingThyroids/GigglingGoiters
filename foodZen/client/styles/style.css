@@ -174,8 +174,10 @@ td:hover {
 
 li.basket-item {
   padding-top: 35px;
-  background-color: #ff3333;
+  background-color: #C4D2FF;
   cursor: pointer;
+  border-radius: 10px;
+  box-shadow: 20px, 20px, 20px, 20px, #888888;
 
 }
 
