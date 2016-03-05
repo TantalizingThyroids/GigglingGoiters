@@ -172,7 +172,6 @@ angular.module('foodZen.services', [])
       'TotalFat':trueFinal[4],
       'Carbs':trueFinal[6],
       'Sugar':trueFinal[24]
-
     };
     var finalFinal = [];
     for(var item in nutriObj){
