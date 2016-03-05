@@ -1,8 +1,9 @@
-angular.module('foodZen.recipes', ['ngSanitize'])
+angular.module('foodZen.recipes', ['ngSanitize', 'ui.bootstrap'])
 .controller('RecipeController', function($scope, $http, Recipes, Ingredients, $location, $anchorScroll, $timeout){
   $scope.data = {};
   $scope.singleRecipe = {};
   $scope.data.nutri = [];
+  $scope.isCollapsed = true;
   var nutriList = [];
   // var env = require('../env/env.js');
   // var foodAPIkey = env.foodAPIkey;
