@@ -54,7 +54,7 @@ body {
 */
 .header-image {
   width: 100%;
-  height: 400px;
+  height: 350px;
   overflow: hidden;
 }
 
@@ -313,6 +313,11 @@ div.glist {
 
 .glist-clearAll {
   padding: 10px;
+}
+
+.groceryItems{
+  cursor: pointer;
+  font-color: black;
 }
 
 li.even {

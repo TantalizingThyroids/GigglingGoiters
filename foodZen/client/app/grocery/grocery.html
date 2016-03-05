@@ -24,9 +24,10 @@
     <button class="btn-sm btn-primary" type="submit" ng-click="addGrocery()">Add</button>
   </div>
   <div class="glist-removeAll">
-    <button class="btn-sm btn-primary" type="submit" ng-click="removeAllGroceries()">Remove All Items</button>
+    <button class="btn-sm btn-primary" type="submit" ng-click="removeAllGroceries()">Remove All Items</button><br></br>
   </div>
   <ul>
-    <li ng-repeat="grocery in data.groceries">{{grocery}}<button type="button" class="close" ng-click="deleteGrocery(grocery)"> x </button></li>
+<li ng-repeat="grocery in data.groceries" ><a class="groceryItems" ng-click="deleteGrocery(grocery)"> {{grocery}}</a> </li>
   </ul>
 </div>
+
