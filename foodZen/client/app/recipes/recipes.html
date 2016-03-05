@@ -6,6 +6,7 @@
   <div class="recipe-table">
     <h2 class="grayStroke">{{singleRecipe.recipe.data.title}}</h2>
     <img class="recipe" ng-src="{{singleRecipe.recipe.data.image}}">
+    <h3><a>Recipe Nutritional Information</a></h3>
     <div ng-show="newRecipe"class="hover-btn col-md-12">
        <button type="button" class="close center" ng-click="saveUserRecipe(singleRecipe.recipe.data)">
           <span aria-hidden="true">Save Recipe</span>
@@ -23,10 +24,10 @@
           <li class="recipe-table" font-weight="bold" ng-repeat="item in singleRecipe.recipe.data.extendedIngredients"><a ng-click="isCollapsed = !isCollapsed"> {{ item.originalString }} </a>
             <div uib-collapse="isCollapsed" class="panel-body">
               <p>Calories: {{ item.nutri.Calories }}</p>
-              <p>Protein: {{ item.nutri.Protein }}</p>
-              <p>Total fat: {{ item.nutri.TotalFat }}</p>
-              <p>Carbs: {{ item.nutri.Carbs }}</p>
-              <p>Sugar: {{ item.nutri.Sugar }}</p>
+              <p>Protein: {{ item.nutri.Protein }} grams</p>
+              <p>Total fat: {{ item.nutri.TotalFat }} grams</p>
+              <p>Carbs: {{ item.nutri.Carbs }} grams</p>
+              <p>Sugar: {{ item.nutri.Sugar }} grams</p>
             </div>
           </li >
         </ul>
