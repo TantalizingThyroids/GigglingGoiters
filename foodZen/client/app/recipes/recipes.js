@@ -4,6 +4,15 @@ angular.module('foodZen.recipes', ['ngSanitize', 'ui.bootstrap'])
   $scope.singleRecipe = {};
   $scope.data.nutri = [];
   $scope.isCollapsed = true;
+  $scope.isNutClps = true;
+  $scope.recipeNutri = {
+    'Calories':0,
+    'Protein':0,
+    'TotalFat':0,
+    'Carbs':0,
+    'Sugar':0
+  };
+  var currRecServ;
   var nutriList = [];
   // var env = require('../env/env.js');
   // var foodAPIkey = env.foodAPIkey;
@@ -99,10 +108,18 @@ angular.module('foodZen.recipes', ['ngSanitize', 'ui.bootstrap'])
       return step !== '';
     }));
     recipe.data.instructions = formattedInstructions;
-    console.log('Ingredients!! ', recipe.data.extendedIngredients);
+    console.log('Recipe: ', recipe);
+    console.log('servings', recipe.data.servings);
     $scope.singleRecipe.recipe = recipe;
   };
 
+  var totalNutri = function(nutObj, servings){
+    for(var key in nutObj){
+      var serving = Math.ceil(nutObj[key] / servings);
+      console.log('Serving Info: ', servings);
+      $scope.recipeNutri[key] += serving;
+    }
+  };
   //function to get a specific recipe's detailed instructions
   $scope.viewRecipe = function(id){
     return $http({
@@ -115,10 +132,10 @@ angular.module('foodZen.recipes', ['ngSanitize', 'ui.bootstrap'])
       var ingList = recipe.data.extendedIngredients;
       ingList.forEach(function(item, i){
         var ingredient = item.originalString;
-        console.log('Ingredient Test: ', ingredient);
+        // console.log('Ingredient Test: ', ingredient);
         var joinTest = ingredient.split(' ');
         joinTest = joinTest.join('+');
-        console.log('join test: ', joinTest);
+        // console.log('join test: ', joinTest);
         var settings = {
           url: "https://spoonacular-recipe-food-nutrition-v1.p.mashape.com/recipes/visualizeNutrition",
           method: "POST",
@@ -132,18 +149,20 @@ angular.module('foodZen.recipes', ['ngSanitize', 'ui.bootstrap'])
           .then(function(nutri){
             // Extract inbound nutrition info
             var ingObj = Ingredients.nutritionExtractor(nutri);
-            console.log('Ingredient', ingredient);
+            var serv = $scope.singleRecipe.recipe.data.servings;
+            console.log('Servings???', serv);
+            totalNutri(ingObj, serv);
+            // console.log('Ingredient', ingredient);
             $scope.singleRecipe.recipe.data.extendedIngredients[i].nutri = ingObj;
-            console.log('Ingredient Object: ', ingObj);
+            // console.log('Ingredient Object: ', ingObj);
+            var nut = $scope.singleRecipe.recipe.data.extendedIngredients[i].nutri;
+            console.log('Nutri Info: ', $scope.recipeNutri);
           });
       });
-      // console.log('Ingredients!! ', ingList);
-      // console.log('Nutri Info: ', nutri.data);
       $scope.scrollTo('singleRecipe');
     });
   };
   initializeRecipes();
-  
 
   //function to delete a user's saved recipe
   $scope.deleteUserRecipe = function(recipe){

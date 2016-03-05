@@ -6,6 +6,15 @@
   <div class="recipe-table">
     <h2 class="grayStroke">{{singleRecipe.recipe.data.title}}</h2>
     <img class="recipe" ng-src="{{singleRecipe.recipe.data.image}}">
+    <h3><a class="btn btn-default" ng-click="isNutClps = !isNutClps"><h4>Recipe Nutritional Information Per Serving</h4></a></h3>
+    <div  uib-collapse="isNutClps">
+      <p><h4><strong>Servings: </strong><small>{{ singleRecipe.recipe.data.servings }}</small></h4></p>
+      <p><strong>Calories:</strong> {{recipeNutri.Calories}}</p>
+      <p><strong>Protein:</strong> {{recipeNutri.Protein}} grams</p>
+      <p><strong>Total Fat:</strong> {{recipeNutri.TotalFat}} grams</p>
+      <p><strong>Carbs:</strong> {{recipeNutri.Carbs}} grams</p>
+      <p><strong>Sugar:</strong> {{recipeNutri.Sugar}} grams</p>
+    </div>
     <div ng-show="newRecipe"class="hover-btn col-md-12">
        <button type="button" class="close center" ng-click="saveUserRecipe(singleRecipe.recipe.data)">
           <span aria-hidden="true">Save Recipe</span>
@@ -20,13 +29,13 @@
         Ingredients
         </h3>
         <ul>
-          <li class="recipe-table" font-weight="bold" ng-repeat="item in singleRecipe.recipe.data.extendedIngredients"><a ng-click="isCollapsed = !isCollapsed"> {{ item.originalString }} </a>
+          <li class="recipe-table" font-weight="bold" ng-repeat="item in singleRecipe.recipe.data.extendedIngredients"><a class='btn btn-default'ng-click="isCollapsed = !isCollapsed"> {{ item.originalString }} </a>
             <div uib-collapse="isCollapsed" class="panel-body">
               <p>Calories: {{ item.nutri.Calories }}</p>
-              <p>Protein: {{ item.nutri.Protein }}</p>
-              <p>Total fat: {{ item.nutri.TotalFat }}</p>
-              <p>Carbs: {{ item.nutri.Carbs }}</p>
-              <p>Sugar: {{ item.nutri.Sugar }}</p>
+              <p>Protein: {{ item.nutri.Protein }} grams</p>
+              <p>Total fat: {{ item.nutri.TotalFat }} grams</p>
+              <p>Carbs: {{ item.nutri.Carbs }} grams</p>
+              <p>Sugar: {{ item.nutri.Sugar }} grams</p>
             </div>
           </li >
         </ul>
