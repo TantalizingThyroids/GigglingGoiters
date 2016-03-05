@@ -174,9 +174,13 @@ td:hover {
 
 li.basket-item {
   padding-top: 35px;
-  background-color: #ff3333;
   cursor: pointer;
-
+  border-radius: 15px;
+  box-shadow: 20px, 20px, 20px, 20px, #888888;
+  background-color: #3498DB;
+  border-bottom: 5px solid #2980B9;
+  font-weight: 900;
+  text-shadow: 0px -2px #2980B9;
 }
 
 div.basket {
@@ -225,6 +229,14 @@ img.recipe {
 
 div.hover-btn {
   text-align: center;
+  position: relative;
+  padding: 10px 40px;
+  margin: 0px 10px 10px 0px;
+  float: left;
+  border-radius: 10px;
+  font-family: Tahoma;
+  font-size: 25px;
+  color: #FFF;
 }
 
 .recipe-table {
@@ -382,4 +394,8 @@ input.error {
     padding-right: 30px;
     padding-bottom: 50px;
     padding-left: 80px;
+}
+
+.added {
+  color: #3498DB;
 }

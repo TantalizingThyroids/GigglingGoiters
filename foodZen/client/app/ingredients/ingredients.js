@@ -1,4 +1,5 @@
-angular.module('foodZen.ingredients', [])
+angular.module('foodZen.ingredients', ['ui.bootstrap'])
+
 .controller('IngredientController', function($scope, $http, $location, Ingredients, Auth, Recipes, Baskets, $anchorScroll, $timeout){
 
   $scope.ingredientList = false;
@@ -6,6 +7,7 @@ angular.module('foodZen.ingredients', [])
   $anchorScroll.yOffset = 100;
   $scope.ingredientAdded = false;
   $scope.newIngredient = '';
+  
   var timeOfLastAdd;
 
   $scope.showDefaultCarts = function(id) {
