@@ -26,6 +26,7 @@
   <div class="glist-removeAll">
     <button class="btn-sm btn-primary" type="submit" ng-click="removeAllGroceries()">Remove All Items</button><br></br>
   </div>
+  <h6>Click Item to Remove from List</h6>
   <ul>
 <li ng-repeat="grocery in data.groceries" ><a class="groceryItems" ng-click="deleteGrocery(grocery)"> {{grocery}}</a> </li>
   </ul>
