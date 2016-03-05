@@ -1,11 +1,13 @@
-angular.module('foodZen.recipes', ['ngSanitize'])
+angular.module('foodZen.recipes', ['ngSanitize', 'ui.bootstrap'])
 .controller('RecipeController', function($scope, $http, Recipes, Ingredients, $location, $anchorScroll, $timeout){
   $scope.data = {};
   $scope.singleRecipe = {};
   $scope.data.nutri = [];
+  $scope.isCollapsed = true;
   var nutriList = [];
+  // var env = require('../env/env.js');
+  // var foodAPIkey = env.foodAPIkey;
   
-  // console.log('Does X2JS exist??? ', x2js);
   // show detailed singleRecipe when true
   $scope.singleRecipe.view = false;
   // Show saved recipes when true
@@ -121,7 +123,7 @@ angular.module('foodZen.recipes', ['ngSanitize'])
           url: "https://spoonacular-recipe-food-nutrition-v1.p.mashape.com/recipes/visualizeNutrition",
           method: "POST",
           headers: {
-            'X-Mashape-Key': "kwMRnRx4Pdmsh3iPYU5EviI2URg2p1N6NxtjsnwJlPvXFoXn2V",
+            'X-Mashape-Key': 'kwMRnRx4Pdmsh3iPYU5EviI2URg2p1N6NxtjsnwJlPvXFoXn2V',
             'Content-Type': "application/x-www-form-urlencoded"
           },
           data: "defaultCss=checked&ingredientList="+joinTest+"&servings=1"
@@ -129,13 +131,14 @@ angular.module('foodZen.recipes', ['ngSanitize'])
         $http(settings)
           .then(function(nutri){
             // Extract inbound nutrition info
-            var ingArr = Ingredients.nutritionExtractor(nutri);
+            var ingObj = Ingredients.nutritionExtractor(nutri);
             console.log('Ingredient', ingredient);
-            console.log('Ingredient Array: ', ingArr);
+            $scope.singleRecipe.recipe.data.extendedIngredients[i].nutri = ingObj;
+            console.log('Ingredient Object: ', ingObj);
           });
       });
-      console.log('Ingredients!! ', ingList);
-      // console.log('Nutri Info: ', nutriList);
+      // console.log('Ingredients!! ', ingList);
+      // console.log('Nutri Info: ', nutri.data);
       $scope.scrollTo('singleRecipe');
     });
   };

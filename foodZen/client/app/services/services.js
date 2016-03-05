@@ -134,14 +134,6 @@ angular.module('foodZen.services', [])
       var stripped = html.replace(regX, " ");
       return stripped;
     }
-    // var testy = ''; 
-    // testy = xmlBlob.data;
-    // count 11 div and chop!
-    // var fing = testy.split('div');
-    // var fiddl = fing.slice(0,11);
-    // fiddl = fiddl.join('div');
-    // fiddl = fiddl.slice(0,fiddl.length-1);
-    // More strip tests
     var tiddl = RemoveHTMLTags(xmlBlob.data);
     tiddl = tiddl.split(' ');
 
@@ -153,8 +145,36 @@ angular.module('foodZen.services', [])
     });
     finalStr.shift();
     var trueFinal = finalStr.slice(0,112);
-    // console.log('Joins Ville Baby:  ', trueFinal);
-    return trueFinal;
+    trueFinal[5] = trueFinal[5].concat(trueFinal[6]);
+    trueFinal.splice(6, 1);
+    // console.log("Nutrition String: ", trueFinal);
+    // var nutriObj = {
+    //   'Calories':-1,
+    //   'Protein':-1,
+    //   'TotalFat':-1,
+    //   'Carbs':-1,
+    //   'Sugar':-1
+    // };
+    // trueFinal.forEach(function(item, index){
+    //   // console.log(index);
+    //   if(!!nutriObj[item]){
+    //     console.log('Item in Object!');
+    //     if((trueFinal[index-1] !== null) && (nutriObj[item] !== -1)){
+    //       console.log('Value found!!', trueFinal[index-1]);
+    //       nutriObj[item] = trueFinal[index-1];
+    //     }
+    //   }
+      // console.log('nutriObj!?? : ', nutriObj[item]);
+    // });
+    var nutriObj = {
+      'Calories':trueFinal[0],
+      'Protein':trueFinal[2],
+      'TotalFat':trueFinal[4],
+      'Carbs':trueFinal[6],
+      'Sugar':trueFinal[24]
+
+    };
+    return nutriObj;
   };
 
   return {
