@@ -39,8 +39,8 @@
        <td class="lead" ng-repeat="item in rows track by $index">
        <img class="fruit" ng-src="../../assets/apple.jpg">
        {{ item }}
-       <div class="hover-btn">
-          <button type="button" class="close" ng-click="removeIngredient(item)">
+       <div class="hover-btn animate">
+          <button class=btn-lg btn-primary type="button" class="close" ng-click="removeIngredient(item)">
              <span aria-hidden="true">x</span>
              <span class="sr-only">Close</span>
           </button>
@@ -54,7 +54,7 @@
 <div class="baskets" ng-show="defaultCarts" id="baskets">
   <div class="row">
     <h2 class="col-md-12 grayStroke">Common Staples</h2>
-    <uib-alert ng-show="ingredientAdded">Added {{newIngredient}} to cart</uib-alert>
+    <button class="btn-lg btn-primary" ng-show="ingredientAdded">You've added {{newIngredient}} to cart</button>
   </div>
   <div class="basket" ng-repeat="basket in baskets track by $index">
     {{ basket.name }}<br/><button class="add-basket btn-lg btn-primary" ng-click="addBasket(basket)">Add all ingredients from {{basket.name}}</button>
