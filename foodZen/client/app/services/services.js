@@ -174,6 +174,16 @@ angular.module('foodZen.services', [])
       'Sugar':trueFinal[24]
 
     };
+    var finalFinal = [];
+    for(var item in nutriObj){
+      if(!isNaN(parseInt(nutriObj[item]))){
+        nutriObj[item] = parseInt(nutriObj[item]);
+      } else {
+        console.log('Item???? ', item);
+        nutriObj[item] = 0;
+      }
+    }
+    // console.log('Final Final!!!!!! ', finalFinal);
     return nutriObj;
   };
 
