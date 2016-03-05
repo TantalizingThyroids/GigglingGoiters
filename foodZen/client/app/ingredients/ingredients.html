@@ -54,7 +54,7 @@
 <div class="baskets" ng-show="defaultCarts" id="baskets">
   <div class="row">
     <h2 class="col-md-12 grayStroke">Common Staples</h2>
-    <p ng-show="ingredientAdded">Added {{newIngredient}} to cart</p>
+    <p class='btn-lg btn-lg btn-primary' ng-show="ingredientAdded">Added {{newIngredient}} to cart</p>
   </div>
   <div class="basket" ng-repeat="basket in baskets track by $index">
     {{ basket.name }}<br/><button class="add-basket btn-lg btn-primary" ng-click="addBasket(basket)">Add all ingredients from {{basket.name}}</button>
