@@ -116,6 +116,7 @@ angular.module('foodZen.recipes', ['ngSanitize', 'ui.bootstrap'])
      recipe by serving and making available to view
   */
   var totalNutri = function(nutObj, servings){
+    
     for(var key in nutObj){
       var serving = Math.ceil(nutObj[key] / servings);
       console.log('Serving Info: ', servings);
@@ -131,6 +132,14 @@ angular.module('foodZen.recipes', ['ngSanitize', 'ui.bootstrap'])
     }).then(function( recipe ){
       $scope.singleRecipe.view = true;
       adjustRecipe(recipe);
+      // Clear nutrition information for new recipe
+      $scope.recipeNutri = {
+        'Calories':0,
+        'Protein':0,
+        'TotalFat':0,
+        'Carbs':0,
+        'Sugar':0
+      };
       // Assing list of ingredient objects to variable
       var ingList = recipe.data.extendedIngredients;
       // Iterate through ingredient list for recipe
