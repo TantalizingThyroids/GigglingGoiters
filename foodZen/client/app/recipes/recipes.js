@@ -112,7 +112,9 @@ angular.module('foodZen.recipes', ['ngSanitize', 'ui.bootstrap'])
     console.log('servings', recipe.data.servings);
     $scope.singleRecipe.recipe = recipe;
   };
-
+  /* Function for calculating total nutrition information for 
+     recipe by serving and making available to view
+  */
   var totalNutri = function(nutObj, servings){
     for(var key in nutObj){
       var serving = Math.ceil(nutObj[key] / servings);
@@ -129,13 +131,15 @@ angular.module('foodZen.recipes', ['ngSanitize', 'ui.bootstrap'])
     }).then(function( recipe ){
       $scope.singleRecipe.view = true;
       adjustRecipe(recipe);
+      // Assing list of ingredient objects to variable
       var ingList = recipe.data.extendedIngredients;
+      // Iterate through ingredient list for recipe
       ingList.forEach(function(item, i){
+        // Format ingredient string into query string for API
         var ingredient = item.originalString;
-        // console.log('Ingredient Test: ', ingredient);
         var joinTest = ingredient.split(' ');
         joinTest = joinTest.join('+');
-        // console.log('join test: ', joinTest);
+        // Request settings for Spoonacular API to retrieve nutrition information
         var settings = {
           url: "https://spoonacular-recipe-food-nutrition-v1.p.mashape.com/recipes/visualizeNutrition",
           method: "POST",
@@ -145,18 +149,17 @@ angular.module('foodZen.recipes', ['ngSanitize', 'ui.bootstrap'])
           },
           data: "defaultCss=checked&ingredientList="+joinTest+"&servings=1"
         };
+        // HTTP POST request to Spoonacular API
         $http(settings)
           .then(function(nutri){
             // Extract inbound nutrition info
             var ingObj = Ingredients.nutritionExtractor(nutri);
+            // Get Servings information for recipe
             var serv = $scope.singleRecipe.recipe.data.servings;
-            console.log('Servings???', serv);
+            // Calculate total nutrition for recipe, send to view
             totalNutri(ingObj, serv);
-            // console.log('Ingredient', ingredient);
-            $scope.singleRecipe.recipe.data.extendedIngredients[i].nutri = ingObj;
-            // console.log('Ingredient Object: ', ingObj);
-            var nut = $scope.singleRecipe.recipe.data.extendedIngredients[i].nutri;
-            console.log('Nutri Info: ', $scope.recipeNutri);
+            // Add nutrition object to ingredients object for use in view
+            $scope.singleRecipe.recipe.data.extendedIngredients[i].nutri = ingObj;              
           });
       });
       $scope.scrollTo('singleRecipe');

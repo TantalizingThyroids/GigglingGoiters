@@ -6,6 +6,7 @@
   <div class="recipe-table">
     <h2 class="grayStroke">{{singleRecipe.recipe.data.title}}</h2>
     <img class="recipe" ng-src="{{singleRecipe.recipe.data.image}}">
+    <!-- Add Recipe nutrition information -->
     <h3><a class="btn btn-default" ng-click="isNutClps = !isNutClps"><h4>Recipe Nutritional Information Per Serving</h4></a></h3>
     <div  uib-collapse="isNutClps">
       <p><h4><strong>Servings: </strong><small>{{ singleRecipe.recipe.data.servings }}</small></h4></p>
@@ -29,6 +30,7 @@
         Ingredients
         </h3>
         <ul>
+          <!-- Add nutrition information for each ingredient -->
           <li class="recipe-table" font-weight="bold" ng-repeat="item in singleRecipe.recipe.data.extendedIngredients"><a class='btn btn-default'ng-click="isCollapsed = !isCollapsed"> {{ item.originalString }} </a>
             <div uib-collapse="isCollapsed" class="panel-body">
               <p>Calories: {{ item.nutri.Calories }}</p>
