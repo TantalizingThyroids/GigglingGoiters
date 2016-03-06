@@ -128,6 +128,7 @@ angular.module('foodZen.services', [])
   /* Function to Extract Nutrition information from inbound XML
      and put into an object */
   var nutritionExtractor = function(xmlBlob) {
+    // Clear HTML Tags out of XML string
     function RemoveHTMLTags(input) {
       var regX = /(<([^>]+)>)/ig;
       var html = input;
@@ -135,8 +136,9 @@ angular.module('foodZen.services', [])
       return stripped;
     }
     var tiddl = RemoveHTMLTags(xmlBlob.data);
+    // Split string into array of strings
     tiddl = tiddl.split(' ');
-
+    // Remove extra blank spaces from array
     var finalStr = [];
     tiddl.forEach(function(item, index){
       if(item !== ""){
@@ -144,28 +146,12 @@ angular.module('foodZen.services', [])
       }
     });
     finalStr.shift();
+    // Remove extra non-nutrition data
     var trueFinal = finalStr.slice(0,112);
+    // Combine "Total Fat" into one string
     trueFinal[5] = trueFinal[5].concat(trueFinal[6]);
     trueFinal.splice(6, 1);
-    // console.log("Nutrition String: ", trueFinal);
-    // var nutriObj = {
-    //   'Calories':-1,
-    //   'Protein':-1,
-    //   'TotalFat':-1,
-    //   'Carbs':-1,
-    //   'Sugar':-1
-    // };
-    // trueFinal.forEach(function(item, index){
-    //   // console.log(index);
-    //   if(!!nutriObj[item]){
-    //     console.log('Item in Object!');
-    //     if((trueFinal[index-1] !== null) && (nutriObj[item] !== -1)){
-    //       console.log('Value found!!', trueFinal[index-1]);
-    //       nutriObj[item] = trueFinal[index-1];
-    //     }
-    //   }
-      // console.log('nutriObj!?? : ', nutriObj[item]);
-    // });
+    // Preliminary object of nutrition information in string form
     var nutriObj = {
       'Calories':trueFinal[0],
       'Protein':trueFinal[2],
@@ -173,16 +159,15 @@ angular.module('foodZen.services', [])
       'Carbs':trueFinal[6],
       'Sugar':trueFinal[24]
     };
-    var finalFinal = [];
+    // Parse nutrition values into numbers for later calculations
     for(var item in nutriObj){
       if(!isNaN(parseInt(nutriObj[item]))){
         nutriObj[item] = parseInt(nutriObj[item]);
       } else {
-        console.log('Item???? ', item);
         nutriObj[item] = 0;
       }
     }
-    // console.log('Final Final!!!!!! ', finalFinal);
+    // Return cleaned object of nutrition information
     return nutriObj;
   };
 
